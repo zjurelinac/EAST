@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>{{docs.api.name}} &ndash; API Documentation</title>
+    <link rel="stylesheet" href="/static/assets/default.css">
+    <link rel="icon" href="http://getfashable.com/assets/img/logos/favicon.png"/>
+</head>
+<body>
+    <div class="o-main-wrapper">
+        <div class="o-sidebar-spacer"></div>
+        <div class="o-main" id="general">
+            <header class="o-main-header">
+                <h1 class="c-api-name">API Documentation <span class="c-api-version">v{{docs.api.version}}</span></h1>
+                <div class="c-api-description s-markdown s-markdown--main">{{docs.api.description | md(True)}}</div>
+            </header>
+            <div class="o-main-content">
+                {% for region in docs.regions %}
+                <section class="c-region" id="{{region.name | lower | replace(' ', '_')}}">
+                    <header class="c-region-header">
+                        <div class="c-region-name">{{region.name}}</div>
+                        <div class="c-region-url">{{region.base_url}}</div>
+                        <div class="c-region-description s-markdown">{{region.description | md}}</div>
+                    </header>
+                    <div class="c-region-routes">
+                        {% for route in region.routes %}
+                        <div class="c-route" id="{{route.id}}">
+                            <header class="c-route-header">
+                                <div class="c-route-name">{{route.name}}</div>
+                                <div class="c-route-call">
+                                    <span class="c-route-call__method c-route-call__method--{{route.method}}">{{route.method}}</span>
+                                    <span class="c-route-call__path">{{route.url_rule | e}}</span>
+                                    <span class="c-route-auth">{{route.auth}}</span>
+                                </div>
+                            </header>
+                            <div class="c-route-description s-markdown">{{route.description | md}}</div>
+                            <div class="c-route-parameters">
+                                <h3>Parameters</h3>
+                                {% for parameter in route.parameters %}
+                                <div class="c-route-parameter">
+                                    <div class="c-route-parameter__main">
+                                        <div class="c-route-parameter__name">{{parameter.name}}</div>
+                                        <div class="c-route-parameter__type">{{parameter.type}}</div>
+                                        {% if parameter.required %}
+                                            <div class="c-route-parameter__required c-route-parameter__required--r">required</div>
+                                        {% else %}
+                                            <div class="c-route-parameter__required c-route-parameter__required--o">optional</div>
+                                        {% endif %}
+                                    </div>
+                                    <div class="c-route-parameter__extra">
+                                        <div class="c-route-parameter__description">{{parameter.description | md}}</div>
+                                        {% if parameter.default is not none %}
+                                            <div class="c-route-parameter__default">Default: {{parameter.default}}</div>
+                                        {% endif %}
+                                        {% if parameter.example is not none %}
+                                            <div class="c-route-parameter__example">Example: {{parameter.example}}</div>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                                {% else %}
+                                <div class="o-no-items">No parameters.</div>
+                                {% endfor %}
+                            </div>
+                            <div class="c-route-response">
+                                <h3>Response</h3>
+                                <div class="c-route-response__description">
+                                    <span class="c-route-response__status">{{route.response.status}}</span>
+                                    {{route.response.description | md}}
+                                </div>
+                                <div class="c-route-response__content">
+                                    <div class="c-route-response__content-type">{{route.response.content_type}}</div>
+                                    {% if route.response.format is defined %}
+                                        {{route.response.format | md}}
+                                    {% else %}
+                                        Nothing here
+                                    {% endif %}
+                                </div>
+                            </div>
+                            <div class="c-route-errors">
+                                <h3>Errors</h3>
+                                {% for error in route.errors %}
+                                <div class="c-route-error">
+                                    <div class="c-route-error__main">
+                                        <div class="c-route-error__name">{{error.name}}</div>
+                                        <div class="c-route-error__code">{{error.code}}</div>
+                                    </div>
+                                    <div class="c-route-error__description">{{error.description}}</div>
+                                </div>
+                                {% else %}
+                                <div class="o-no-items">No errors expected.</div>
+                                {% endfor %}
+                            </div>
+                            {% if route.examples %}
+                            <div class="c-route-examples">
+                                <h3>Examples</h3>
+                                <div class="c-route-example s-markdown">
+                                    {{route.examples | md}}
+                                </div>
+                            </div>
+                            {% endif %}
+                        </div>
+                        {% endfor %}
+                    </div>
+                </section>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="o-sidebar">
+            <div class="o-sidebar-top">
+                <div class="o-sidebar-logo">
+                    <img class="o-sidebar-logo__img" src="/static/logo.png">
+                    <div class="o-sidebar-logo__text">
+                        <div class="o-sidebar-logo__title">{{docs.api.name}}</div>
+                        <div class="o-sidebar-logo__subtitle">API Documentation</div>
+                    </div>
+                </div>
+                <form class="o-sidebar-search-wrapper" method="post">
+                    <input type="text" name="search" placeholder="Search" class="o-sidebar-search">
+                </form>
+            </div>
+
+            <nav class="o-sidebar-nav">
+                <div class="o-nav-section">
+                    <div class="o-nav-section__name"><a href="#general">General</a></div>
+                    <ul class="o-nav-section-items">
+                        {{renderer.toc()}}
+                    </ul>
+                </div>
+                {% for region in docs.regions %}
+                <div class="o-nav-section">
+                    <div class="o-nav-section__name">
+                        <a href="#{{region.name | lower | replace(' ', '_')}}">{{region.name}}</a>
+                    </div>
+                    <ul class="o-nav-section-items">
+                         {% for route in region.routes %}
+                         <li class="o-nav-section-item c-region-route">
+                            <a href="#{{route.id}}">
+                                <span class="c-region-route__method c-region-route__method--{{route.method}}">{{route.method}}</span>
+                                <span class="c-region-route__name">{{route.name}}</span>
+                            </a>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                {% endfor %}
+            </nav>
+        </div>
+    </div>
+</body>
+</html>

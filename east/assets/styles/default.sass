@@ -1,0 +1,770 @@
+@import "_material-colors"
+@import 'https://fonts.googleapis.com/css?family=Roboto+Mono:400,500,700|Roboto+Slab:300,400,700|Roboto:300,400,500,700'
+
+////////////////////////////////////////////////////////////////////////////////
+
+$body-font:         "Roboto", sans-serif
+$header-font:       "Roboto Slab", serif
+$mono-font:         "Roboto Mono", monospace
+
+$font-size-huge:    2.5rem
+$font-size-larger:  1.25rem
+$font-size-large:   1rem
+$font-size-medium:  0.875rem
+$font-size-small:   0.75rem
+$font-size-smaller: 0.625rem
+
+$text-color-1:      black
+$text-color-2:      $clr-grey-900
+$text-color-3:      $clr-grey-600
+$text-color-4:      $clr-grey-500
+$text-color-5:      $clr-blue-grey-50
+$text-color-6:      white
+$text-color-7:      $clr-blue-grey-500
+
+$background-color-1:white
+$background-color-2:$clr-blue-grey-50
+$background-color-3:$clr-blue-grey-100
+$background-color-4:$clr-blue-grey-900
+$background-color-5:$clr-blue-grey-700
+
+////////////////////////////////////////////////////////////////////////////////
+
+
+$sh-clr-1:          $clr-blue-grey-400  // Mid gray
+$sh-clr-2:          $clr-blue-grey-600  // Dark gray
+$sh-clr-3:          $clr-blue-grey-900  // Darker gray
+
+$sh-clr-4:          $clr-deep-purple    // Purple
+$sh-clr-5:          $clr-orange-300     // Cyan
+$sh-clr-6:          $clr-purple-300     // Light purple
+$sh-clr-7:          white               // White
+$sh-clr-8:          $clr-pink-300       // Pink
+$sh-clr-9:          $clr-lime-300       // Yellow
+$sh-clr-10:         $clr-light-blue-300 // Lime
+
+.highlight
+    background-color: $sh-clr-3
+    border-radius:    4px
+
+    /* Comment */
+    .c
+        color: $sh-clr-1
+    /* Keyword */
+    .k
+        color: $sh-clr-5
+    /* Literal */
+    .l
+        color: $sh-clr-6
+    /* Name */
+    .n
+        color: $sh-clr-7
+    /* Operator */
+    .o
+        color: $sh-clr-8
+    /* Punctuation */
+    .p
+        color: $sh-clr-7
+    /* Comment.Multiline */
+    .cm
+        color: $sh-clr-1
+    /* Comment.Preproc */
+    .cp
+        color: $sh-clr-1
+    /* Comment.Single */
+    .c1
+        color: $sh-clr-1
+    /* Comment.Special */
+    .cs
+        color: $sh-clr-1
+    /* Generic.Emph */
+    .ge
+        font-style: italic
+    /* Generic.Strong */
+    .gs
+        font-weight: bold
+    /* Keyword.Constant */
+    .kc
+        color: $sh-clr-5
+    /* Keyword.Declaration */
+    .kd
+        color: $sh-clr-5
+    /* Keyword.Namespace */
+    .kn
+        color: $sh-clr-8
+    /* Keyword.Pseudo */
+    .kp
+        color: $sh-clr-5
+    /* Keyword.Reserved */
+    .kr
+        color: $sh-clr-5
+    /* Keyword.Type */
+    .kt
+        color: $sh-clr-5
+    /* Literal.Date */
+    .ld
+        color: $sh-clr-9
+    /* Literal.Number */
+    .m
+        color: $sh-clr-6
+    /* Literal.String */
+    .s
+        color: $sh-clr-9
+    /* Name.Attribute */
+    .na
+        color: $sh-clr-10
+    /* Name.Builtin */
+    .nb
+        color: $sh-clr-7
+    /* Name.Class */
+    .nc
+        color: $sh-clr-10
+    /* Name.Constant */
+    .no
+        color: $sh-clr-5
+    /* Name.Decorator */
+    .nd
+        color: $sh-clr-10
+    /* Name.Entity */
+    .ni
+        color: $sh-clr-7
+    /* Name.Exception */
+    .ne
+        color: $sh-clr-10
+    /* Name.Function */
+    .nf
+        color: $sh-clr-10
+    /* Name.Label */
+    .nl
+        color: $sh-clr-7
+    /* Name.Namespace */
+    .nn
+        color: $sh-clr-7
+    /* Name.Other */
+    .nx
+        color: $sh-clr-10
+    /* Name.Property */
+    .py
+        color: $sh-clr-7
+    /* Name.Tag */
+    .nt
+        color: $sh-clr-8
+    /* Name.Variable */
+    .nv
+        color: $sh-clr-7
+    /* Operator.Word */
+    .ow
+        color: $sh-clr-8
+    /* Text.Whitespace */
+    .w
+        color: $sh-clr-7
+    /* Literal.Number.Float */
+    .mf
+        color: $sh-clr-6
+    /* Literal.Number.Hex */
+    .mh
+        color: $sh-clr-6
+    /* Literal.Number.Integer */
+    .mi
+        color: $sh-clr-6
+    /* Literal.Number.Oct */
+    .mo
+        color: $sh-clr-6
+    /* Literal.String.Backtick */
+    .sb
+        color: $sh-clr-9
+    /* Literal.String.Char */
+    .sc
+        color: $sh-clr-9
+    /* Literal.String.Doc */
+    .sd
+        color: $sh-clr-9
+    /* Literal.String.Double */
+    .s2
+        color: $sh-clr-9
+    /* Literal.String.Escape */
+    .se
+        color: $sh-clr-6
+    /* Literal.String.Heredoc */
+    .sh
+        color: $sh-clr-9
+    /* Literal.String.Interpol */
+    .si
+        color: $sh-clr-9
+    /* Literal.String.Other */
+    .sx
+        color: $sh-clr-9
+    /* Literal.String.Regex */
+    .sr
+        color: $sh-clr-9
+    /* Literal.String.Single */
+    .s1
+        color: $sh-clr-9
+    /* Literal.String.Symbol */
+    .ss
+        color: $sh-clr-9
+    /* Name.Builtin.Pseudo */
+    .bp
+        color: $sh-clr-7
+    /* Name.Variable.Class */
+    .vc
+        color: $sh-clr-7
+    /* Name.Variable.Global */
+    .vg
+        color: $sh-clr-7
+    /* Name.Variable.Instance */
+    .vi
+        color: $sh-clr-7
+    /* Literal.Number.Integer.Long */
+    .il
+        color: $sh-clr-6
+
+
+////////////////////////////////////////////////////////////////////////////////
+
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed,  figure, figcaption, footer, header, hgroup,  menu, nav, output, ruby, section, summary, time, mark, audio, video
+    margin: 0
+    padding: 0
+    border: 0
+    font-size: 100%
+    font: inherit
+    vertical-align: baseline
+
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section
+    display: block
+
+body
+    line-height: 1
+
+ol, ul
+    list-style: none
+
+blockquote, q
+    quotes: none
+
+blockquote:before, blockquote:after, q:before, q:after
+    content: ''
+    content: none
+
+table
+    border-collapse: collapse
+    border-spacing: 0
+
+
+////////////////////////////////////////////////////////////////////////////////
+
+html
+    font-family:    $body-font
+    font-size:      16px
+
+button, div, form, header, img, input, li, nav, section, ul, textarea
+    box-sizing:     border-box
+    display:        block
+
+a[href]
+    color:          inherit
+    text-decoration: none
+
+////////////////////////////////////////////////////////////////////////////////
+
+body
+    background:     #fff
+    color:          $text-color-2
+    font-size:      $font-size-medium
+    line-height:    1.25rem
+
+b, strong
+    font-weight:    700
+
+i, em
+    font-style:     oblique
+    font-weight:    300
+
+code
+    font-family:    $mono-font
+    font-weight:    500
+
+h1, h2, h3, h4
+    color:          $text-color-1
+    font-family:    $header-font
+
+h1
+    font-size:      $font-size-huge
+    line-height:    2.5rem
+    margin-bottom:  1.25rem
+
+h2
+    font-weight:    700
+    font-size:      $font-size-larger
+    line-height:    2.5rem
+    margin-top:     1.875rem
+
+h3
+    font-weight:    700
+    font-size:      $font-size-large
+    line-height:    2.5rem
+    margin-top:     1.25rem
+
+////////////////////////////////////////////////////////////////////////////////
+
+.s-markdown
+
+    code
+        background:     $background-color-2
+        border:         1px solid #ddd
+        border-radius:  2px
+        color:          $text-color-1
+        padding:        0 2px
+
+    p
+        margin-bottom:  1.25rem
+
+    ul
+        margin-bottom:  1.25rem
+        list-style-type: disc
+
+    li
+        display:        list-item
+        list-style-type: disc
+        list-style-position: inside
+        padding:        0.3125rem 0 0.3125rem 1.25rem
+
+    a[href]
+        color:          $clr-red
+
+        *
+            color:          $clr-red
+
+        &:hover
+            text-decoration: underline
+
+    h2:before
+        color:          $text-color-3
+        content:        "#"
+        font-weight:    700
+        margin-right:   0.3125rem
+
+    h3:before
+        color:          $text-color-4
+        content:        "##"
+        font-weight:    700
+        margin-right:   0.625rem
+
+.s-markdown, .highlight
+    pre
+        background:     $sh-clr-3
+        border-radius:  4px
+        font-family:    $mono-font
+        margin-bottom:  1.25rem
+        padding:        0.625rem
+        white-space:    pre-wrap
+
+        code
+            background:     none
+            border:         none
+            color:          $sh-clr-7
+            font-weight:    400
+
+
+////////////////////////////////////////////////////////////////////////////////
+
+.o-clearfix, .o-grid-container
+    &:after
+        clear:          both
+        content:        ""
+        display:        table
+
+$grid-cols:     24
+
+@for $i from 1 through $grid-cols
+    .o-col-#{$i}-#{$grid-cols}
+        float:          left
+        width:          $i/$grid-cols*100%
+
+.o-spacer
+    min-height:     1px
+
+.o-no-items
+    color:          $text-color-3
+
+////////////////////////////////////////////////////////////////////////////////
+
+@mixin o-grid-container
+    &:after
+        clear:          both
+        content:        ""
+        display:        table
+
+@mixin o-col($i, $cols: $grid-cols)
+    float:          left
+    width:          $i/$cols*100%
+
+@mixin o-spacer
+    min-height:     1px
+
+////////////////////////////////////////////////////////////////////////////////
+
+.x-typo-grid
+    background:     url("../grid.png")
+    left:           0
+    height:         4000px
+    position:       absolute
+    right:          0
+    top:            0
+    z-index:        100
+
+////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+
+.o-main-wrapper
+    +o-grid-container
+
+.o-sidebar
+    +o-col(6)
+    background:     $background-color-4
+    bottom:         0
+    color:          $text-color-6
+    position:       fixed
+    top:            0
+
+.o-sidebar-spacer
+    +o-col(6)
+    +o-spacer
+
+.o-main
+    +o-col(18)
+
+.o-main-header
+    padding:        0
+
+.o-main-content
+    padding:        1.25rem 0
+
+////////////////////////////////////////////////////////////////////////////////
+
+.o-sidebar-top
+    background:     $clr-red
+    padding:        0.625rem 1.25rem
+    position:       absolute
+    top:            0
+    width:          100%
+    z-index:        10
+
+.o-sidebar-logo
+    +o-grid-container
+
+.o-sidebar-logo__img
+    float:          left
+    height:         5rem
+
+.o-sidebar-logo__text
+    float:          left
+    padding:        0.625rem 0 0 0.3125rem
+
+.o-sidebar-logo__title
+    font-size:      1.75rem
+    font-weight:    700
+    line-height:    2.5rem
+
+.o-sidebar-logo__subtitle
+    color:          $text-color-6
+    font-weight:    300
+
+.o-sidebar-search-wrapper
+    height:         2.5rem
+    padding-top:    0.625rem
+
+.o-sidebar-search
+    background:     #fff
+    border:         2px solid $clr-red-200
+    border-radius:  1rem
+    color:          $text-color-2
+    font-family:    $body-font
+    font-size:      $font-size-small
+    font-weight:    700
+    height:         1.875rem
+    padding:        0 0.625rem
+    width:          100%
+
+    &:focus
+        border-color:   $clr-red-700
+
+.o-sidebar-nav
+    bottom:         0
+    overflow-y:     scroll
+    padding:        0 1.25rem 0 1.25rem
+    position:       absolute
+    top:            8.75rem
+    width:          100%
+
+.o-nav-section
+    margin:         0.625rem 0 1.25rem 0
+
+.o-nav-section__name
+    color:          $text-color-5
+    font-size:      $font-size-large
+    font-weight:    700
+    line-height:    2.5rem
+
+    a:hover
+        color:          $clr-red
+
+.o-nav-section-items
+    border-left:    2px solid $clr-blue-grey-700
+.o-nav-section-item
+    color:          $text-color-7
+    font-size:      $font-size-small
+    font-weight:    700
+    padding:        0.3125rem 0 0.3125rem 0.625rem
+
+    &:hover
+        color:          $text-color-5
+
+.c-region-route__method
+    margin-right:   0.3125rem
+    font-weight:    400
+
+.c-region-route__method--GET
+    color:          $clr-blue-600
+
+.c-region-route__method--POST
+    color:          $clr-teal-400
+
+.c-region-route__method--PUT
+    color:          $clr-lime-600
+
+.c-region-route__method--DELETE
+    color:          $clr-red
+
+////////////////////////////////////////////////////////////////////////////////
+
+.c-api-name
+    background:     $clr-blue-grey-100
+    border-bottom:  1px solid $text-color-5
+    line-height:    2.5rem
+    margin-bottom:  1.875rem
+    padding:        3.75rem 10% 2.5rem 10%
+
+.c-api-version
+    color:          $clr-teal-600
+    font-family:    $mono-font
+    font-size:      $font-size-larger
+    font-weight:    700
+    line-height:    0
+
+.c-api-description
+    padding:        0 10% 1.25rem 10%
+    width:          80%
+
+.c-region
+    margin-bottom:  3.75rem
+
+.c-region-header
+    background:     $background-color-3
+    margin-bottom:  1.25rem
+    padding:        1.875rem 10%
+
+.c-region-name
+    color:          $text-color-1
+    font-size:      $font-size-huge
+    font-weight:    300
+    line-height:    3.75rem
+
+.c-region-url
+    color:          $clr-indigo
+    font-family:    $mono-font
+    font-size:      $font-size-large
+    font-weight:    700
+
+.c-region-description
+    color:          $clr-blue-grey-500
+    margin-top:     0.625rem
+    width:          80%
+
+.c-region-routes
+    padding:        0 10%
+
+.c-route
+    border-bottom:  1px solid $text-color-5
+    padding:        0.625rem 0 1.875rem 0
+
+    h3:before
+        color:          $text-color-4
+        content:        "@"
+        font-weight:    700
+        margin-right:   0.3125rem
+
+.c-route-name
+    @extend h2
+
+.c-route-call
+    +o-grid-container
+    font-family:    $mono-font
+    line-height:    1.875rem
+
+    *
+        display:        block
+        float:          left
+        margin-right:   0.625rem
+
+.c-route-call__method
+    font-size:      $font-size-large
+    font-weight:    700
+
+.c-route-call__method--GET
+    color:          $clr-blue-700
+
+.c-route-call__method--POST
+    color:          $clr-teal-400
+
+.c-route-call__method--PUT
+    color:          $clr-lime-600
+
+.c-route-call__method--DELETE
+    color:          $clr-red
+
+.c-route-call__path
+    color:          $text-color-3
+    font-weight:    700
+
+.c-route-auth
+    background:     $clr-purple
+    border-radius:  4px
+    color:          white
+    font-family:    $mono-font
+    font-size:      $font-size-small
+    font-weight:    700
+    line-height:    1.25rem
+    margin:         0.3125rem 0
+    padding:        0 0.5rem
+    // position:       relative
+
+.c-route-description
+    color:          $text-color-3
+    width:          80%
+
+.c-route-parameters, .c-route-response, .c-route-errors, .c-route-examples
+    padding-left:   1.25rem
+    width:          80%
+
+.c-route-parameter
+    +o-grid-container
+    // border-bottom:  1px solid #ddd
+    padding:        0.625rem
+
+    &:nth-child(even)
+        background:     $background-color-2
+
+.c-route-parameter__main
+    +o-col(8)
+
+.c-route-parameter__extra
+    +o-col(16)
+    border-left:    2px solid $clr-blue-grey-100
+    padding-left:   0.875rem
+    min-height:     3.75rem
+
+.c-route-parameter__name
+    font-family:    $mono-font
+    font-weight:    700
+
+.c-route-parameter__type
+    color:          $clr-blue-600
+    font-weight:    700
+
+.c-route-parameter__required
+    color:          $text-color-4
+
+.c-route-parameter__description
+    color:          $text-color-3
+    font-size:      $font-size-small
+
+.c-route-parameter__default
+    color:          $clr-orange
+    font-family:    $mono-font
+    font-size:      $font-size-small
+    font-weight:    700
+    margin-top:     0.625rem
+
+.c-route-parameter__example
+    color:          $clr-green
+    font-family:    $mono-font
+    font-size:      $font-size-small
+    font-weight:    700
+    margin-top:     0.625rem
+
+.c-route-response__description
+    color:          $text-color-3
+    font-size:      $font-size-small
+    margin-bottom:  0.625rem
+    overflow:       hidden
+
+.c-route-response__status
+    color:          $clr-green
+    float:          left
+    font-family:    $mono-font
+    font-size:      $font-size-medium
+    font-weight:    700
+    margin-right:   0.3125rem
+
+.c-route-response__content
+    color:          #fff
+    min-height:     3.75rem
+    background:     $background-color-4
+    border-radius:  4px
+    overflow:       hidden
+    position:       relative
+
+    pre
+        margin-bottom:  0
+
+.c-route-response__content-type
+    background:     $background-color-5
+    border-bottom-left-radius: 4px
+    border-right:   4px solid $background-color-4
+    border-top:     4px solid $background-color-4
+    border-top-right-radius: 4px
+    color:          $clr-blue-grey-200
+    font-size:      $font-size-small
+    font-family:    $mono-font
+    font-weight:    700
+    line-height:    1.25rem
+    padding:        0 0.625rem
+    position:       absolute
+    right:          0
+    top:            0
+
+.c-route-error
+    +o-grid-container
+    padding:        0.625rem
+
+    &:nth-child(even)
+        background:     $background-color-2
+
+.c-route-error__main
+    +o-col(8)
+    word-wrap:      break-word
+
+.c-route-error__description
+    +o-col(16)
+    border-left:    2px solid $clr-blue-grey-100
+    color:          $text-color-3
+    font-size:      $font-size-small
+    padding-left:   0.875rem
+    min-height:     3.75rem
+
+.c-route-error__name
+    font-family:    $mono-font
+    font-weight:    700
+
+.c-route-error__code
+    color:          $clr-red
+    font-weight:    700
+
+.c-route-example
+    padding-top:    0.625rem
+
+    p
+        color:      $text-color-3
