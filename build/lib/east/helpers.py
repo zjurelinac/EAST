@@ -9,7 +9,7 @@
 
 import mistune
 
-from collections import OrderedDict, defaultdict
+from collections import OrderedDict
 from datetime import date, datetime
 
 from pygments import highlight

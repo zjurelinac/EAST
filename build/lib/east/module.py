@@ -32,7 +32,7 @@ class East:
         self._routes = {}
         self._exceptions = {}
         self._docs = (Docs(flask_app.config)
-                      if flask_app.config['EAST_DOCUMENT_API'] else None)
+                      if flask_app.config['EAST_GENERATE_API_DOCS'] else None)
 
         self._flask_app.add_url_rule('/v2.0/docs', 'docs', self._serve_docs,
                                      methods=['GET'])
@@ -171,7 +171,7 @@ class East:
         self._docs.generate()
 
     def _serve_docs(self):
-        if 'EAST_DOCS_TARGET' not in self._flask_app.config:
+        if 'EAST_API_DOCS_LOCATION' not in self._flask_app.config:
             raise DoesNotExistError('API documentation is not available.')
         return send_from_directory("../docs", "docs.html")
 

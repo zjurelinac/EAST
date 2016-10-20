@@ -72,7 +72,7 @@ class Docs:
         parser = EastMarkdownParser()
         env.filters['md'] = parser.render
         template = env.get_template('docs_template.html')
-        with open(self.config['EAST_DOCS_TARGET'], 'w+') as f:
+        with open(self.config['EAST_API_DOCS_LOCATION'], 'w+') as f:
             f.write(template.render(docs=docs, renderer=parser.renderer))
 
         shutil.copytree(os.path.join(src_assets_path, 'styles'), dest_assets_path)
