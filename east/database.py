@@ -49,7 +49,7 @@ class EastModel(Model):
         try:
             super().create(**attributes)
         except IntegrityError as e:
-            if 'UNIQUE' in str(e):
+            if 'unique' in str(e).lower():
                 raise ValueNotUniqueError('Cannot create `%s`, value already in use [%s].'
                                           % (cls.__name__, e))
             else:
