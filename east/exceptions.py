@@ -40,6 +40,12 @@ class BaseAPIException(Exception):
 
 # General API errors
 
+class APIRouteDoesNotExist(BaseAPIException):
+    """Equivalent of werkzeug NotFound."""
+    description = 'There is no registered endpoint on this URL route.'
+    status_code = 404
+
+
 class APIMethodNotAllowed(BaseAPIException):
     """Equivalent of werkzeug MethodNotAllowed."""
     description = 'Requested route does not support this method.'
@@ -50,6 +56,12 @@ class APIFeatureNotImplemented(BaseAPIException):
     """Equivalent of builtin NotImplementedError."""
     description = 'This feature of the API is not yet implemented.'
     status_code = 501
+
+
+class APIInternalError(BaseAPIException):
+    """For various internal errors, such as system failure and programmer's error"""
+    description = 'An internal server error has occured.'
+    status_code = 500
 
 
 class FileSystemError(BaseAPIException):

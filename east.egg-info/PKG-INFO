@@ -1,6 +1,6 @@
 Metadata-Version: 1.0
 Name: east
-Version: 1.0.0
+Version: 1.0.1
 Summary: Flask extension for creating REST APIs
 Home-page: https://github.com/zjurelinac/East
 Author: Zvonimir Jurelinac

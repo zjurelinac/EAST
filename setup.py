@@ -11,7 +11,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='east',
-    version='1.0.0',
+    version='1.0.1',
     description='Flask extension for creating REST APIs',
     author='Zvonimir Jurelinac',
     author_email='zjurelinac@gmail.com',

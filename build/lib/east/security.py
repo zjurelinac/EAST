@@ -83,9 +83,9 @@ def jwt_required(f):
         except Exception as e:
             raise MalformedTokenError(str(e))
 
-        _request_ctx_stack.top.user = user = _jwt.get_identity(payload)
-
-        if user is None:
+        try:
+            _request_ctx_stack.top.user = _jwt.get_identity(payload)
+        except:
             raise UnknownUserError('There is no user with a given `user_id` in the database.')
 
         return f(*args, **kwargs)

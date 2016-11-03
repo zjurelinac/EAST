@@ -14,6 +14,20 @@ from .exceptions import *
 from .helpers import serialize, to_jsontype
 
 
+class EastDatabase:
+    exceptions = {
+        'ConstraintError': IntegrityViolationError,
+        'DatabaseError': DatabaseError,
+        'DataError': DataError,
+        'IntegrityError': IntegrityViolationError,
+        'InterfaceError': DatabaseError,
+        'InternalError': DatabaseError,
+        'NotSupportedError': DatabaseError,
+        'OperationalError': DatabaseError,
+        'ProgrammingError': APIInternalError
+    }
+
+
 class EastModel(Model):
     """
     East extension of Peewee model
@@ -38,43 +52,6 @@ class EastModel(Model):
                  TextField: 'string', DateTimeField: 'Datetime',
                  DateField: 'Date', TimeField: 'Time',
                  TimestampField: 'Timestamp', BooleanField: 'bool'}
-
-    @classmethod
-    def create(cls, **attributes):
-        """
-        Create a new instance of model and insert the data into the database
-
-        Extends Peewee's builtin `create` method with BaseAPIExceptions.
-        """
-        try:
-            super().create(**attributes)
-        except IntegrityError as e:
-            if 'unique' in str(e).lower():
-                raise ValueNotUniqueError('Cannot create `%s`, value already in use [%s].'
-                                          % (cls.__name__, e))
-            else:
-                raise IntegrityViolationError('Database integrity violated [%s].' % e)
-        except OperationalError as e:
-            raise DatabaseError('Database operational error [%s].' % e)
-
-    @classmethod
-    def replace_exceptions(cls, call, *args, **kwargs):
-        """
-        Replace Peewee exceptions with BaseAPIExceptions
-
-        Replace builtin Peewee exceptions raised by calling `call` with
-        those inheriting from BaseAPIException to allow for easier handling.
-        """
-        try:
-            call(*args, **kwargs)
-        except IntegrityError as e:
-            if 'UNIQUE' in str(e):
-                raise ValueNotUniqueError('Cannot create `%s`, value already in use [%s].'
-                                          % (cls.__name__, e))
-            else:
-                raise IntegrityViolationError('Database integrity violated [%s].' % e)
-        except OperationalError as e:
-            raise DatabaseError('Database operational error [%s].' % e)
 
     def to_jsondict(self, view=''):
         """Serialize the model instance to a JSON-encodable dictionary"""
@@ -112,3 +89,44 @@ class EastModel(Model):
             else:
                 return 'object'
         return 'object'
+
+
+# Extensions of peewee database classes with East exceptions
+
+class EastSqliteDatabase(EastDatabase, SqliteDatabase):
+    pass
+
+
+class EastMySQLDatabase(EastDatabase, MySQLDatabase):
+    pass
+
+
+class EastPostgresqlDatabase(EastDatabase, PostgresqlDatabase):
+    pass
+
+
+try:
+    from playhouse.postgres_ext import PostgresqlExtDatabase
+
+    class EastPostgresqlExtDatabase(EastDatabase, PostgresqlExtDatabase):
+        pass
+except ImportError:
+    pass
+
+
+try:
+    from playhouse.pool import PooledPostgresqlDatabase
+
+    class EastPooledPostgresqlDatabase(EastDatabase, PooledPostgresqlDatabase):
+        pass
+except ImportError:
+    pass
+
+
+try:
+    from playhouse.pool import PooledPostgresqlExtDatabase
+
+    class EastPooledPostgresqlExtDatabase(EastDatabase, PooledPostgresqlExtDatabase):
+        pass
+except ImportError:
+    pass
