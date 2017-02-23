@@ -9,6 +9,7 @@
 """
 
 import inspect
+import os
 
 from functools import wraps
 from flask import request, send_from_directory
@@ -33,8 +34,8 @@ class East:
         self._exceptions = {}
         self._docs = (Docs(flask_app.config)
                       if flask_app.config['EAST_GENERATE_API_DOCS'] else None)
-
-        self._flask_app.add_url_rule('/v2.0/docs', 'docs', self._serve_docs,
+        self._base_url = flask_app.config.get('BASE_API_URL', '/')
+        self._flask_app.add_url_rule(os.path.join(self._base_url, 'docs'), 'docs', self._serve_docs,
                                      methods=['GET'])
 
     def register_validator(self, param_name: str, param_validator):
